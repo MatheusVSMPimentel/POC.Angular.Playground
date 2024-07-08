@@ -54,10 +54,10 @@ export class AppComponent implements OnInit {
       }
     })
   }
-  userObservable(name: string, email: string): Observable<User> {
+  userObservable(name: string, email: string): Observable<UserTest> {
     return new Observable(subscriber => {
       if (name === "Admin") {
-        let user = new User(name, email);
+        let user = new UserTest(name, email);
         setTimeout(() => {
           subscriber.next(user);
         }, 1000);
@@ -95,7 +95,7 @@ export class AppComponent implements OnInit {
   }
 }
 
-export class User {
+export class UserTest {
   constructor(name: string, email: string) {
     this.name = name;
     this.email = email;
