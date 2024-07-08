@@ -20,23 +20,26 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     //this.myPromise('Eduardo').then(result=> console.log(result)).catch(rejected => console.log(rejected))
 
-/*     this.myObservable("").subscribe({
-      next: (v) => console.log(v),
-      error: (e) => console.error(e),
-      complete: () => console.info('complete')
-    }); */
+    /*     this.myObservable("").subscribe({
+          next: (v) => console.log(v),
+          error: (e) => console.error(e),
+          complete: () => console.info('complete')
+        }); */
 
     const observer = {
       next: (valor: any) => console.log('Next: ', valor),
       error: (erro: any) => console.log('Erro: ', erro),
       complete: () => console.info('complete')
-
     }
 
-    const obs = this.myObservable('Matheus');
+   // const obs = this.myObservable('Matheus');
+    const obs = this.userObservable('Admin',"admin@admin.com");
 
-    obs.subscribe(observer);
-
+    const subscription = obs.subscribe(observer);
+    setTimeout(() => {
+      subscription.unsubscribe();
+      console.log('Connection closed status: ' + subscription.closed);
+    }, 3500);
   }
 
   myObservable(name: string): Observable<string> {
@@ -53,7 +56,34 @@ export class AppComponent implements OnInit {
       }
     })
   }
+  userObservable(name: string, email: string): Observable<User> {
+    return new Observable(subscriber => {
+      if (name === "Admin") {
+        let user = new User(name, email);
+        setTimeout(() => {
+          subscriber.next(user);
+        }, 1000);
+        
+        setTimeout(() => {
+          subscriber.next(user);
+        }, 2000);
 
+        setTimeout(() => {
+          subscriber.next(user);
+        }, 3000);
+        
+        setTimeout(() => {
+          subscriber.next(user);
+        }, 4000);
+        
+        setTimeout(() => {
+          subscriber.complete();
+        }, 5000);
+      } else {
+        subscriber.error('Ops! We found a erro.');
+      }
+    })
+  }
   myPromise(name: string): Promise<string> {
     return new Promise((resolve, reject) => {
       if (name === "Matheus") {
@@ -65,4 +95,13 @@ export class AppComponent implements OnInit {
       }
     })
   }
+}
+
+export class User {
+  constructor(name: string, email: string) {
+    this.name = name;
+    this.email = email;
+  }
+  name: string;
+  email: string;
 }
