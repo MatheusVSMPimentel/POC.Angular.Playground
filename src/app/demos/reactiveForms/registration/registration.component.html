@@ -1,39 +1,39 @@
 <div class="container main-container my-5">
     <h4 class="pt-3">Demo Register</h4>
     <hr>
-    <form novalidate>
+    <form novalidate (ngSubmit)="addUser()" [formGroup]="registerForm">
         <div class="form-group">
             <label class="col-md-2 control-label" for="name">Full Name:</label>
             <div class="col-md-10">
-                <input class="form-control" id="name" type="text" placeholder="Insert your name (Required)" >
+                <input formControlName="name" class="form-control" id="name" type="text" placeholder="Insert your name (Required)" >
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-2 control-label" for="document">Document:</label>
             <div class="col-md-10">
-                <input class="form-control" id="document" type="text" placeholder="Insert your Document (Required)" >
+                <input formControlName="document" class="form-control" id="document" type="text" placeholder="Insert your Document (Required)" >
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-2 control-label" for="email">E-mail:</label>
             <div class="col-md-10">
-                <input class="form-control" id="email" type="text" placeholder="Insert your E-mail (Required)" >
+                <input formControlName="email" class="form-control" id="email" type="text" placeholder="Insert your E-mail (Required)" >
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-2 control-label" for="password">Password:</label>
             <div class="col-md-10">
-                <input class="form-control" id="password" type="text" placeholder="Insert your password (Required)" >
+                <input formControlName="password" class="form-control" id="password" type="text" placeholder="Insert your password (Required)" >
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-2 control-label" for="passwordConfirm">Password Confirm:</label>
             <div class="col-md-10">
-                <input class="form-control" id="passwordConfirm" type="text" placeholder="Insert your password (Required)" >
+                <input formControlName="passwordConfirm" class="form-control" id="passwordConfirm" type="text" placeholder="Insert your password (Required)" >
             </div>
         </div>
 
