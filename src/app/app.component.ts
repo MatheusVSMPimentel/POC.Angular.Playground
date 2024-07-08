@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -12,6 +12,21 @@ import { RouterOutlet } from '@angular/router';
   `,
   styles: [],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  
   title = 'RXJS';
+  ngOnInit(): void {
+    this.myPromise('Eduardo').then(result=> console.log(result)).catch(rejected => console.log(rejected))
+  }
+  myPromise(name: string): Promise<string>{
+    return new Promise((resolve, reject )=>{
+      if (name === "Matheus"){
+        setTimeout(()=>{
+          resolve("Welcome " + name);
+        }, 1000)
+      }else{
+        reject('Ops! Você não é o Matheus.');
+      }
+    })
+  }
 }
