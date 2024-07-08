@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Observable, subscribeOn } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +16,31 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent implements OnInit {
   
   title = 'RXJS';
+
   ngOnInit(): void {
-    this.myPromise('Eduardo').then(result=> console.log(result)).catch(rejected => console.log(rejected))
+    //this.myPromise('Eduardo').then(result=> console.log(result)).catch(rejected => console.log(rejected))
+    this.myObservable("").subscribe({
+      next: (v) => console.log(v),
+      error: (e) => console.error(e),
+      complete: () => console.info('complete') 
+  });
+  
   }
+
+  myObservable(name: string) : Observable<string>{
+    return new Observable(subscriber => {
+      if (name === "Matheus"){
+        subscriber.next("Ola! " + name);
+        subscriber.next("Ola! de novo "+ name);
+        setTimeout(()=>{
+          subscriber.next("Resposta com delay. " + name);
+        }, 5000)
+      }else{
+        subscriber.error('Ops! Você não é o Matheus.');
+      }
+    })
+  }
+
   myPromise(name: string): Promise<string>{
     return new Promise((resolve, reject )=>{
       if (name === "Matheus"){
