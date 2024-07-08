@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Observable, subscribeOn } from 'rxjs';
+import { Observable } from 'rxjs';
+import { MenuComponent } from './navigation/menu/menu.component';
+import { FooterComponent } from './navigation/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
-  template: `
-    <h1>Welcome to {{title}}!</h1>
-
-    <router-outlet />
-  `,
+  imports: [RouterOutlet, MenuComponent, FooterComponent],
+  templateUrl: 'app.component.html',
   styles: [],
 })
 export class AppComponent implements OnInit {
