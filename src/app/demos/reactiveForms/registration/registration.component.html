@@ -6,10 +6,10 @@
             <label class="col-md-2 control-label" for="name">Full Name:</label>
             <div class="col-md-10">
                 <input formControlName="name" class="form-control" id="name" type="text" placeholder="Insert your name (Required)" 
-                [ngClass]="{'is-valid': (!propIsValid('name') && registerForm.get('name')?.dirty),'is-invalid': propIsValid('name') }">
+                [ngClass]="{'is-valid': ((!displayMessage['name'])  && registerForm.get('name')?.dirty)   ,'is-invalid': displayMessage['name'] }">
                 
-            <span  class="text-danger" *ngIf="propIsValid('name')">
-                <p>Fill the name field</p>
+            <span  class="text-danger" *ngIf="displayMessage['name']">
+                <p [innerHTML]="displayMessage['name']"></p>
             </span>
             </div>
         </div>
@@ -17,9 +17,11 @@
         <div class="form-group">
             <label class="col-md-2 control-label" for="document">Document:</label>
             <div class="col-md-10">
-                <input formControlName="document" class="form-control" id="document" type="text" placeholder="Insert your Document (Required)" cpf [mask]="'000.000.000-00'">
-                <span  class="text-danger" *ngIf="propIsValid('document') && registerForm.get('document')?.hasError('cpf')">
-                    <p>Invalid value to the document field</p>
+                <input formControlName="document" class="form-control" id="document" type="text" placeholder="Insert your Document (Required)" cpf [mask]="'000.000.000-00'"
+                [ngClass]="{'is-invalid': displayMessage['document'] }">
+                
+                <span  class="text-danger" *ngIf="displayMessage['document']">
+                    <p [innerHTML]="displayMessage['document']"></p>
                 </span>
             </div>
         </div>
@@ -27,30 +29,36 @@
         <div class="form-group">
             <label class="col-md-2 control-label" for="email">E-mail:</label>
             <div class="col-md-10">
-                <input formControlName="email" class="form-control" id="email" type="text" placeholder="Insert your E-mail (Required)" 
-                [ngClass]="{'is-invalid': propIsValid('email') }">
+                <input formControlName="email" class="form-control" id="email" type="text" placeholder="Insert your E-mail (Required)"
+                [ngClass]="{'is-invalid': displayMessage['email'] }">
                 
-            <span  class="text-danger" *ngIf="propIsValid('email') && registerForm.get('email')?.hasError('required')">
-                <p>Fill the e-mail field</p>
-            </span>
-            <span  class="text-danger" *ngIf="propIsValid('email') && registerForm.get('email')?.hasError('email')">
-                <p>Invalid value for the e-mail field</p>
-            </span>
-
+                <span  class="text-danger" *ngIf="displayMessage['email']">
+                    <p [innerHTML]="displayMessage['email']"></p>
+                </span>
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-2 control-label" for="password">Password:</label>
             <div class="col-md-10">
-                <input formControlName="password" class="form-control" id="password" type="text" placeholder="Insert your password (Required)" >
+                <input formControlName="password" class="form-control" id="password" type="password" placeholder="Insert your password (Required)" 
+                [ngClass]="{'is-invalid': displayMessage['password'] }">
+                
+                <span  class="text-danger" *ngIf="displayMessage['password']">
+                    <p [innerHTML]="displayMessage['password']"></p>
+                </span>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-2 control-label" for="passwordConfirm">Password Confirm:</label>
+            <label class="col-md-2 control-label" for="passwordConfirm">Confirm Password:</label>
             <div class="col-md-10">
-                <input formControlName="passwordConfirm" class="form-control" id="passwordConfirm" type="text" placeholder="Insert your password (Required)" >
+                <input formControlName="passwordConfirm" class="form-control" id="passwordConfirm" type="password" placeholder="Insert your password (Required)"  
+                [ngClass]="{'is-invalid': displayMessage['passwordConfirm'] }">
+                
+                <span  class="text-danger" *ngIf="displayMessage['passwordConfirm']">
+                    <p [innerHTML]="displayMessage['passwordConfirm']"></p>
+                </span>
             </div>
         </div>
 

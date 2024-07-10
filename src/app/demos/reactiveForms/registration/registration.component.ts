@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormControlName, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, OnInit, viewChildren, ViewChildren } from '@angular/core';
+import { FormBuilder, FormControl, FormControlName, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from './models/User';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { NgBrazil } from 'ng-brazil';
@@ -7,7 +7,7 @@ import { NgBrazilValidators } from 'ng-brazil';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { CustomValidators, CustomFormsModule } from 'ngx-custom-validators';
 import { DisplayMessage, GenericValidator, ValidationMessages } from './generic-form-validation';
-import { email } from 'ngx-custom-validators/src/app/email/validator';
+import { fromEvent, merge, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-registration',
@@ -18,7 +18,10 @@ import { email } from 'ngx-custom-validators/src/app/email/validator';
   templateUrl: './registration.component.html',
   styles: ``
 })
+
 export class RegistrationComponent implements OnInit, AfterViewInit {
+
+@ViewChildren(FormControlName, { read: ElementRef }) formInputElements!: ElementRef<any>[];
 
   registerForm: FormGroup = new FormGroup({});
   formResult: string = '';
@@ -28,42 +31,43 @@ export class RegistrationComponent implements OnInit, AfterViewInit {
     password: "" ,
     passwordConfirm: ""};
 
-    validationMessage: ValidationMessages = {};
-    genericValidator: GenericValidator = new  GenericValidator(this.validationMessage);
+    validationMessages: ValidationMessages;
+    genericValidator: GenericValidator ;
     displayMessage: DisplayMessage = {};
 
 
 constructor(private fb: FormBuilder) {
-  this.validationMessage = {
+  this.validationMessages = {
     name:{
       required: 'Fill in the name field.',
-      minLength:'The name field must be at least 2 characters long.',
-      maxLength:'The name field cannot be longer than 150 characters.'
+      minlength:'The name field must be at least 2 characters long.',
+      maxlength:'The name field cannot be longer than 150 characters.'
     },
     document:{
       cpf: 'The Document inserted is invalid.',
-      required: 'Fill in the name field.'
+      required: 'Fill in the document field.'
     },
     email: {
-      required: 'Fill in the name field.',
+      required: 'Fill in the email field.',
       email: 'The E-mail inserted is invalid.'
     },
     password:{
-      required: 'Fill in the name field.',
+      required: 'Fill in the password field.',
       rangeLength: 'The password must be between 6 and 15 characters long.'
     },
     passwordConfirm:{
       equalTo: 'The password confirmation field must match the password field.'
     }
   }
+  this.genericValidator = new GenericValidator(this.validationMessages);
 }
   
   ngOnInit(){
-    let password = new FormControl("",[Validators.required, Validators.minLength(6), Validators.maxLength(15)])
+    let password = new FormControl("",[Validators.required, CustomValidators.rangeLength([6,15])])
 
     this.registerForm = this.fb.group({
-      name :['', Validators.required, CustomValidators.rangeLength([2,150])],
-      document : ['',[NgBrazilValidators.cpf]],
+      name :['', [Validators.required, Validators.minLength(2), Validators.maxLength(150)]],
+      document : ['',[Validators.required,NgBrazilValidators.cpf]],
       email : ['',[Validators.required, Validators.email]],
       password,
       passwordConfirm : ['', [CustomValidators.rangeLength([6,15]),Validators.required, CustomValidators.equalTo(password)]],
@@ -98,8 +102,21 @@ constructor(private fb: FormBuilder) {
     }
   }
 
-  ngAfterViewInit(): void {
-    throw new Error('Method not implemented.');
+  ngAfterViewInit(): void
+   {
+    
+   let controlBlurs: Observable<any>[] = this.formInputElements
+   .map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur'));
+   let controlDigits: Observable<any>[] = this.formInputElements
+   .map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'keyup'));
+
+   merge(...controlDigits).subscribe(() => {
+    this.displayMessage = this.genericValidator.messageProcessing(this.registerForm)
+  })
+
+   merge(...controlBlurs).subscribe(() => {
+      this.displayMessage = this.genericValidator.messageProcessing(this.registerForm)
+    })
   }
 
 }
