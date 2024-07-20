@@ -6,7 +6,7 @@ import { NgBrazil } from 'ng-brazil';
 import { NgBrazilValidators } from 'ng-brazil';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { CustomValidators, CustomFormsModule } from 'ngx-custom-validators';
-import { DisplayMessage, GenericValidator, ValidationMessages } from './generic-form-validation';
+import { DisplayMessage, GenericValidator, ValidationMessages } from '../../../extensions/generic-form-validation';
 import { fromEvent, merge, Observable } from 'rxjs';
 
 @Component({

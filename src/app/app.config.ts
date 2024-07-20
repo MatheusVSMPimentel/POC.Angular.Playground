@@ -1,9 +1,14 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
+import {
+  PreloadAllModules,
+  provideRouter,
+  withPreloading,
+} from '@angular/router';
+import { AppRoutingModule, routes } from './app.routes';
 import { provideNgxMask } from 'ngx-mask';
+import { QuestionService } from './demos/dynamicForms/question/question.service';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideNgxMask()]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes, withPreloading(PreloadAllModules)), provideNgxMask(), QuestionService]
+
 };
