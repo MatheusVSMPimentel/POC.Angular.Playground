@@ -1,6 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { User } from '../../../models/User';
+import { AfterViewInit, Component, ElementRef, OnInit, viewChildren, ViewChildren } from '@angular/core';
+import { FormBuilder, FormControl, FormControlName, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { User } from './models/User';
+import { NgClass, NgFor, NgIf } from '@angular/common';
+import { NgBrazil } from 'ng-brazil';
+import { NgBrazilValidators } from 'ng-brazil';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { CustomValidators, CustomFormsModule } from 'ngx-custom-validators';
+import { DisplayMessage, GenericValidator, ValidationMessages } from '../../../extensions/generic-form-validation';
+import { fromEvent, merge, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-registration',

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {  RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MenuComponent } from './navigation/menu/menu.component';
-import { FooterComponent } from './navigation/footer/footer.component';
+import { NavigationModule } from './navigation/navigation.module';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MenuComponent, FooterComponent],
+  imports: [RouterOutlet, NavigationModule],
+  providers: [],
   templateUrl: 'app.component.html',
   styles: [],
 })
