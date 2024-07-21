@@ -1,7 +1,7 @@
 <div   style="padding-bottom: 30px;">
     <div class="card h-100">
         <div style="align-content:center;">
-            <img src="assets/assets/{{product.image}}" height="164px" width="253px" alt="">
+            <img src="assets/{{product.image}}" height="164px" width="253px" alt="">
         </div>
 
         <h4 class="card-title">{{ product.name | titlecase }}</h4>
@@ -32,7 +32,7 @@
                 <span><span class="fa" [ngClass]="product.active? 'fa-toggle-on': 'fa-toggle-off'"></span> Status</span>
             </a>
             &nbsp;
-            <a [routerLink]="['edit/', product.id]" class="btn btn-primary">
+            <a [routerLink]="['/products/edit', product.id]" class="btn btn-primary">
                 Edit
             </a>
         </div>
