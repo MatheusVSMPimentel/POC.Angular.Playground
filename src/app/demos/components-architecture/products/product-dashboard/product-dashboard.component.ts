@@ -1,59 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Product } from '../models/product';
+import { fromEvent, Observable } from 'rxjs';
+import { ProductCountComponent } from './product-count.component';
+import { ProductCardComponent } from '../product-card/product-card.component';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-product-dashboard',
   templateUrl: './product-dashboard.component.html',
   styles: ``
 })
-export class ProductDashboardComponent implements OnInit  {
-  
+export class ProductDashboardComponent implements OnInit, AfterViewInit  {
+  @ViewChild('test', {static: false}) messageScreen!: ElementRef;
+  @ViewChild(ProductCountComponent, {static: false}) counterElement!: ElementRef;
+  @ViewChildren(ProductCardComponent) productCards!: QueryList<ProductCardComponent>;
+
   products: Product[] = [];
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
+  ngAfterViewInit(): void {
+    console.log('Counter Element: ', this.counterElement)
+
+    let clickText : Observable<any> = fromEvent(this.messageScreen.nativeElement,'click')
+    clickText.subscribe(()=>{
+      alert('Text had been clicked');
+    return;
+    })
+
+    console.log(this.productCards);
+    this.productCards.forEach((p:ProductCardComponent)=> console.log(p.product))
+  }
+
+  changeStatus(event: Product){
+    event.active = !event.active
+  }
 
   ngOnInit() {
-    this.products = [{
-      id: 1,
-      name: 'Teste',
-      active: true,
-      value: 100,
-      image: 'celular.jpg'
-    },
-    {
-      id: 2,
-      name: 'Teste 2',
-      active: true,
-      value: 200,
-      image: 'gopro.jpg'
-    },
-    {
-      id: 3,
-      name: 'Teste 3',
-      active: true,
-      value: 300,
-      image: 'laptop.jpg'
-    },
-    {
-      id: 4,
-      name: 'Teste 4',
-      active: true,
-      value: 400,
-      image: 'mouse.jpg'
-    },
-    {
-      id: 5,
-      name: 'Teste 5',
-      active: true,
-      value: 500,
-      image: 'teclado.jpg'
-    },
-    {
-      id: 6,
-      name: 'Teste 6',
-      active: false,
-      value: 600,
-      image: 'headset.jpg'
-    }];
+    this.products = this.productService.obterTodos();
   }
 }

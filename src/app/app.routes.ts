@@ -4,6 +4,7 @@ import { AboutUsComponent } from './institutional/about-us/about-us.component';
 import { RegistrationComponent } from './demos/reactiveForms/registration/registration.component';
 import { DynamicFormsComponent } from './demos/dynamicForms/dynamic-forms.component';
 import { NgModule } from '@angular/core';
+import { NotFoundError } from 'rxjs';
 
 export const routes: Routes = [
     {path:'', redirectTo: '/home', pathMatch:'full'},
@@ -13,7 +14,8 @@ export const routes: Routes = [
     { path: 'contact-us', component: DynamicFormsComponent},
     {path: 'products', 
         loadChildren: () => import('./demos/components-architecture/products/product.module').then(m => m.ProductModule)
-    }
+    },
+    {path: '**', component: NotFoundError}
 ];
 
 @NgModule({
