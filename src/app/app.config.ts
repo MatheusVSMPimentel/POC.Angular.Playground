@@ -9,6 +9,6 @@ import { provideNgxMask } from 'ngx-mask';
 import { QuestionService } from './demos/dynamicForms/question/question.service';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes, withPreloading(PreloadAllModules)), provideNgxMask(), QuestionService]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideNgxMask(), QuestionService]
 
 };
