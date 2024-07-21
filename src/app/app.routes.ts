@@ -10,7 +10,10 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent},
     { path: 'about-us', component: AboutUsComponent},
     { path: 'register', component: RegistrationComponent},
-    { path: 'contact-us', component: DynamicFormsComponent}
+    { path: 'contact-us', component: DynamicFormsComponent},
+    {path: 'products', 
+        loadChildren: () => import('./demos/components-architecture/products/product.module').then(m => m.ProductModule)
+    }
 ];
 
 @NgModule({
