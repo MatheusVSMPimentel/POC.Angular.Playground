@@ -8,6 +8,7 @@ import { ProductCountComponent } from "./product-dashboard/product-count.compone
 import { ProductEditComponent } from "./product-edit/product-edit.component";
 import { ProductAppComponent } from "./product.app.component";
 import { ProductService } from "./services/product.service";
+import { ProductResolveService } from "./services/product.resolve";
 registerLocaleData(localePt)
 
 @NgModule({
@@ -27,7 +28,8 @@ registerLocaleData(localePt)
         
     ],
     providers:[
-        ProductService
+        ProductService,
+        ProductResolveService
     ]
 })
 export class ProductModule{}

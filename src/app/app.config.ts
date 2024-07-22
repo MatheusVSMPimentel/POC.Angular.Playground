@@ -5,6 +5,8 @@ import {
 import {  AppRoutingModule, routes } from './app.routes';
 import { provideNgxMask } from 'ngx-mask';
 import { QuestionService } from './demos/dynamicForms/question/question.service';
+import { AuthGuard } from './services/app.guard';
+import { RegisterGuard } from './services/register.guard';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,7 +15,9 @@ export const appConfig: ApplicationConfig = {
      (routes, 
       //withDebugTracing()
     ), 
-    provideNgxMask(), QuestionService
+    provideNgxMask(), QuestionService,
+    AuthGuard,
+    RegisterGuard
     ],
   
 };

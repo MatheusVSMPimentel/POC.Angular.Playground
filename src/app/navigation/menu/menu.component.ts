@@ -36,7 +36,7 @@ export class MenuComponent {
         exact: false
       },{
         name: "Admin Panel",
-        link: "",
+        link: "/admin",
         admin: true,
         exact: true
       }

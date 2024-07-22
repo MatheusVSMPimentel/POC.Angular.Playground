@@ -4,6 +4,7 @@ import { fromEvent, Observable } from 'rxjs';
 import { ProductCountComponent } from './product-count.component';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { ProductService } from '../services/product.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-dashboard',
@@ -17,7 +18,7 @@ export class ProductDashboardComponent implements OnInit, AfterViewInit  {
 
   products: Product[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private route: ActivatedRoute) { }
   ngAfterViewInit(): void {
     console.log('Counter Element: ', this.counterElement)
 
@@ -36,6 +37,7 @@ export class ProductDashboardComponent implements OnInit, AfterViewInit  {
   }
 
   ngOnInit() {
-    this.products = this.productService.obterTodos();
+    this.products = this.route.snapshot.data['products'];
+    console.log(this.route.snapshot.data['testData']);
   }
 }

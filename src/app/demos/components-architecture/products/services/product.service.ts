@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
 
@@ -53,11 +52,13 @@ export class ProductService {
         }];
     }
 
-    obterTodos(): Product[]{
+    getAll(status?: string ): Product[]{
+        if(status === 'active') return this.products.filter(product => product.active)
+
         return this.products;
     }
 
-    obterPorId(id: number): Product {
+    getById(id: number): Product {
         return this.products.find((product: Product) => product.id == id) ?? {active: false, id:0 , image:'', name:'', value:0};
     }
 }
