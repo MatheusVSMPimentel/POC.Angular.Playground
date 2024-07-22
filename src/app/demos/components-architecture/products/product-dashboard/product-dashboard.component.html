@@ -1,41 +1,12 @@
 <div class="container main-container">
 
-    <h1>Lista Produtos</h1>
-
+    <h1 #test>Lista Produtos</h1>
+    <product-count [products]="products"></product-count>
     <div class="row text-center">
-
-        <div *ngFor="let product of products;" class="col-md-4" style="padding-bottom: 30px;">
-            <div class="card h-100">
-                <div style="align-content:center;">
-                    <img src="assets/assets/{{product.image}}" height="164px" width="253px" alt="">
-                </div>
-
-                <h4 class="card-title">{{ product.name | titlecase }}</h4>
-
-                <div [ngSwitch]="product.active">
-                    <p *ngSwitchCase="true">Em estoque</p>
-                    <p *ngSwitchCase="false">Fora de estoque</p>
-                </div>
-
-                <div *ngIf="!product.active" class="card-body">
-                    <div>
-                        <h4>Avise-me quando chegar</h4>
-                    </div>
-                </div>
-
-                <div *ngIf="product.active" class="card-body">
-                    <div>
-                        <h4>{{ product.value | currency:'BRL':'symbol':'1.2-2':'pt' }}</h4>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <a class="btn btn-success" href="javascript:void(0)">
-                        Botão
-                    </a>
-                </div>
-            </div>
-        </div>
-
+        <product-card class="col-md-4" *ngFor="let product of products" [product]="product"
+            (status)="changeStatus($event)">
+            <h5 id="endStock">Ou vá até uma de nossas lojas</h5>
+            <h5 id="offer">Corra e aproveite</h5>
+        </product-card>
     </div>
 </div>

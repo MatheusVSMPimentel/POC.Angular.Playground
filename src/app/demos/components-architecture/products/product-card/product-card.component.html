@@ -1,0 +1,40 @@
+<div   style="padding-bottom: 30px;">
+    <div class="card h-100">
+        <div style="align-content:center;">
+            <img src="assets/{{product.image}}" height="164px" width="253px" alt="">
+        </div>
+
+        <h4 class="card-title">{{ product.name | titlecase }}</h4>
+
+        <div [ngSwitch]="product.active">
+            <p *ngSwitchCase="true">Em estoque</p>
+            <p *ngSwitchCase="false">Fora de estoque</p>
+        </div>
+
+        <div *ngIf="!product.active" class="card-body">
+            <div>
+                <h4>Avise-me quando chegar</h4>
+                <ng-content select="#endStock" ></ng-content>
+                
+            </div>
+        </div>
+
+        <div *ngIf="product.active" class="card-body">
+            <div>
+                <h4>{{ product.value | currency:'BRL':'symbol':'1.2-2':'pt' }}</h4>
+                <ng-content select="#offer"></ng-content>
+
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <a class="btn" [ngClass]="product.active? 'btn-success': 'btn-danger'" (click)="eventEmitter()">
+                <span><span class="fa" [ngClass]="product.active? 'fa-toggle-on': 'fa-toggle-off'"></span> Status</span>
+            </a>
+            &nbsp;
+            <a [routerLink]="['/products/edit', product.id]" class="btn btn-primary">
+                Edit
+            </a>
+        </div>
+    </div>
+</div>
