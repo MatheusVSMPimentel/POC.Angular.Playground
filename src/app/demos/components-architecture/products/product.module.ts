@@ -1,15 +1,15 @@
 import { NgModule } from "@angular/core";
 import { ProductDashboardComponent } from "./product-dashboard/product-dashboard.component";
-import { CommonModule, NgClass, NgFor, NgIf, registerLocaleData } from "@angular/common";
+import { CommonModule, NgClass, NgFor, NgIf } from "@angular/common";
 import { ProductRoute } from "./product.routes";
-import  localePt  from "@angular/common/locales/pt";
 import { ProductCardComponent } from "./product-card/product-card.component";
 import { ProductCountComponent } from "./product-dashboard/product-count.component";
 import { ProductEditComponent } from "./product-edit/product-edit.component";
 import { ProductAppComponent } from "./product.app.component";
 import { ProductService } from "./services/product.service";
 import { ProductResolveService } from "./services/product.resolve";
-registerLocaleData(localePt)
+
+
 
 @NgModule({
     declarations:[
@@ -25,7 +25,6 @@ registerLocaleData(localePt)
         NgFor,
         NgClass,
         NgIf,
-        
     ],
     providers:[
         ProductService,

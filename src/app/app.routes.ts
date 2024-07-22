@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { NotFoundError } from 'rxjs';
 import { AuthGuard } from './services/app.guard';
 import { RegisterGuard } from './services/register.guard';
+import { MoviesComponent } from './demos/pipes/movies/movies.component';
 
 export const routes: Routes = [
     {path:'', redirectTo: '/home', pathMatch:'full'},
@@ -14,6 +15,7 @@ export const routes: Routes = [
     { path: 'about-us', component: AboutUsComponent, canActivate:[AuthGuard] },
     { path: 'register', component: RegistrationComponent, canDeactivate:[RegisterGuard]},
     { path: 'contact-us', component: DynamicFormsComponent},
+    {path: 'movies', component: MoviesComponent},
     {path: 'products', 
         loadChildren: () => import('./demos/components-architecture/products/product.module').then(m => m.ProductModule)
     },
