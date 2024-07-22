@@ -8,6 +8,7 @@ import { ProductEditComponent } from "./product-edit/product-edit.component";
 import { ProductAppComponent } from "./product.app.component";
 import { ProductService } from "./services/product.service";
 import { ProductResolveService } from "./services/product.resolve";
+import { BarModule } from "../../di-zones-bar/bar.module";
 
 
 
@@ -25,6 +26,7 @@ import { ProductResolveService } from "./services/product.resolve";
         NgFor,
         NgClass,
         NgIf,
+        BarModule.forRoot({ barId: 100, barToken:'sadasdasd'})
     ],
     providers:[
         ProductService,

@@ -8,14 +8,16 @@ import { NotFoundError } from 'rxjs';
 import { AuthGuard } from './services/app.guard';
 import { RegisterGuard } from './services/register.guard';
 import { MoviesComponent } from './demos/pipes/movies/movies.component';
+import { DiZonesBarComponent } from './demos/di-zones-bar/di-zones-bar.component';
 
 export const routes: Routes = [
-    {path:'', redirectTo: '/home', pathMatch:'full'},
+    { path:'', redirectTo: '/home', pathMatch:'full'},
     { path: 'home', component: HomeComponent},
     { path: 'about-us', component: AboutUsComponent, canActivate:[AuthGuard] },
     { path: 'register', component: RegistrationComponent, canDeactivate:[RegisterGuard]},
     { path: 'contact-us', component: DynamicFormsComponent},
-    {path: 'movies', component: MoviesComponent},
+    { path: 'movies', component: MoviesComponent},
+    //{ path: 'bar', component: DiZonesBarComponent, loadComponent:  },
     {path: 'products', 
         loadChildren: () => import('./demos/components-architecture/products/product.module').then(m => m.ProductModule)
     },
