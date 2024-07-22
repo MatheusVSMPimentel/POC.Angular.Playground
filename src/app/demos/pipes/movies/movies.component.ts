@@ -10,7 +10,9 @@ import { ImageFormaterPipe } from './image.pipe';
   imports: [NgFor, DatePipe, TitleCasePipe, CurrencyPipe, FileSizePipe],
   providers:[ImageFormaterPipe],
   templateUrl: './movies.component.html',
-  styles: ``
+  styles: `
+  img{padding-bottom: 5px;} 
+  `
 })
 export class MoviesComponent implements OnInit {
   movies: Movie[];
