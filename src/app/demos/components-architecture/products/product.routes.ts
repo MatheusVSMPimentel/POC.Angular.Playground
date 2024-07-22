@@ -4,33 +4,39 @@ import { ProductDashboardComponent } from './product-dashboard/product-dashboard
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { ProductAppComponent } from './product.app.component';
 import { ProductResolveService } from './services/product.resolve';
+import { DiZonesBarComponent } from '../../di-zones-bar/di-zones-bar.component';
 
 export const routes: Routes = [
-    {path:'', component: ProductAppComponent,
-        children:[
-            {path:'', redirectTo: 'all', pathMatch:'full'},
-            {path:'edit/:id', component: ProductEditComponent},
-            {path:':status', component: ProductDashboardComponent,
+    {
+        path: '', component: ProductAppComponent,
+        children: [
+            { path: '', redirectTo: 'all', pathMatch: 'full' },
+            { path: 'bar', component: DiZonesBarComponent },
+            { path: 'edit/:id', component: ProductEditComponent },
+            {
+                path: ':status', component: ProductDashboardComponent,
                 resolve:
                 {
-                    products : ProductResolveService
+                    products: ProductResolveService
                 },
-                data:{
+                data: {
                     testData: 'Data Test Successed'
                 }
             },
+
         ]
     },
+
 ];
 
 @NgModule({
-    imports:[
+    imports: [
         RouterModule.forChild(routes)
     ],
-    exports:[
+    exports: [
         RouterModule
     ]
 })
-export class ProductRoute{
+export class ProductRoute {
 
 }
