@@ -11,8 +11,6 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 import localePt from "@angular/common/locales/pt";
 import { registerLocaleData } from "@angular/common";
-import { Store } from './demos/todo-list/todo.store';
-import { TasksService } from './demos/todo-list/todo.service';
 registerLocaleData(localePt)
 
 export const appConfig: ApplicationConfig = {
