@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {  RouterModule, RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NavigationModule } from './navigation/navigation.module';
+import { ToDoModule } from './demos/todo-list/todo.module';
 
 @Component({
   selector: 'app-root',

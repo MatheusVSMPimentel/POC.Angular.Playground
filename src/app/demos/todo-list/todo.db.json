@@ -1,0 +1,64 @@
+{
+  "todolist": [
+    {
+      "id": 1,
+      "name": "Responder e-mails",
+      "finished": false,
+      "doing": true
+    },
+    {
+      "id": 2,
+      "name": "Reunião com fornecedor",
+      "finished": false,
+      "doing": true
+    },
+    {
+      "id": 3,
+      "name": "Finalizar curso de Angular",
+      "finished": false,
+      "doing": false
+    },
+    {
+      "id": 4,
+      "name": "Publicar feedback no LinkedIn",
+      "finished": false,
+      "doing": true
+    },
+    {
+      "id": 5,
+      "name": "Levar cachorro no veterinário",
+      "finished": false,
+      "doing": false
+    },
+    {
+      "id": 6,
+      "name": "Ligar para Mãe",
+      "finished": false,
+      "doing": false
+    },
+    {
+      "id": 7,
+      "name": "Comprar Café",
+      "finished": false,
+      "doing": false
+    },
+    {
+      "id": 8,
+      "name": "Visitar desenvolvedor.io",
+      "finished": true,
+      "doing": false
+    },
+    {
+      "id": 9,
+      "name": "Do the bed",
+      "doing": false,
+      "finished": true
+    },
+    {
+      "id": 10,
+      "name": "Learn unit test in Angular",
+      "doing": false,
+      "finished": false
+    }
+  ]
+}
