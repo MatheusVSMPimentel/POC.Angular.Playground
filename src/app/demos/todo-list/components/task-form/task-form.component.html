@@ -1,0 +1,24 @@
+<form novalidate class="form-row mb-5" (ngSubmit)="addTask()" [formGroup]="registerTaskForm">
+    <div class="col-4 mx-sm-3 ">
+            <input formControlName="task" class="form-control" id="name" type="text"
+                placeholder="Insert your task (Required)" [ngClass]="{'is-invalid': propIsValid() }">
+            <span  class="text-danger" *ngIf="propIsValid()">
+                <p class="badge" [innerHTML]="invalidTaskName"></p>
+            </span>
+        </div>
+    <button type="submit" style="height: 36px;" class="btn btn-gradient-purple-green pb-3" [disabled]="propIsValid() || !registerTaskForm.dirty">Insert To-Do Task</button>
+
+</form>
+<!-- 
+<form novalidate (ngSubmit)="addTask()" [formGroup]="registerTaskForm">
+
+    <div class="row text-left">
+        <div style="padding-left: 15px;" class="form-group">
+            <input class="form-control" style="width: 350px;" id="task" placeholder="New task" formControlName="task" type="text">
+        </div>
+        <div style="padding-left: 30px;" class="form-group">
+            <button class="btn btn-success" id="Registrar" type="submit">Registrar</button>
+        </div>
+    </div>
+
+</form> -->

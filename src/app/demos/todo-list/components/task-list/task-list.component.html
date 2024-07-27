@@ -1,0 +1,22 @@
+<div class="task-list">
+    <h3>
+        <ng-content></ng-content>
+    </h3>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr *ngFor="let item of list; index as id">
+                <td>
+                    <span>{{ item.name }}</span>
+
+                    <span *ngIf="item.doing && !item.finished" (click)="toggleItem(id, 'end')"  class="task-list__finished"></span>
+                    <span *ngIf="!item.doing && !item.finished" (click)="toggleItem(id, 'start')" class="task-list__doing"></span>
+                    <span *ngIf="item.doing && !item.finished" (click)="toggleItem(id, 'toDo')" class="task-list__retreat"></span>
+                    <span  *ngIf="!item.doing && item.finished" (click)="toggleItem(id, 'start')" class="task-list__retreat"></span>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
