@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  RouterModule, RouterOutlet } from '@angular/router';
+import {  RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NavigationModule } from './navigation/navigation.module';
 
@@ -13,7 +13,7 @@ import { NavigationModule } from './navigation/navigation.module';
 })
 export class AppComponent implements OnInit {
 
-  title = 'RXJS';
+  title = 'Playground Angular';
 
   ngOnInit(): void {
     //this.myPromise('Eduardo').then(result=> console.log(result)).catch(rejected => console.log(rejected))
