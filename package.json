@@ -18,6 +18,7 @@
     "@angular/platform-browser-dynamic": "18.0.6",
     "@angular/router": "18.0.6",
     "angular2-text-mask": "^9.0.0",
+    "@angular/core": "18.0.6",
     "js-brasil": "^2.6.1",
     "ng-brazil": "^3.0.0",
     "ng2-validation": "^4.2.0",
@@ -27,12 +28,7 @@
     "rxjs": "7.8.1",
     "text-mask-addons": "^3.8.0",
     "tslib": "2.6.3",
-    "zone.js": "0.14.7"
-  },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "18.0.7",
-    "@angular/cli": "^18.0.7",
-    "@angular/compiler-cli": "^18.0.6",
+    "zone.js": "0.14.7",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
@@ -40,6 +36,10 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    
+    "@angular-devkit/build-angular": "18.0.7",
+    "@angular/cli": "^18.0.7",
+    "@angular/compiler-cli": "^18.0.6",
     "typescript": "5.4.5"
   }
 }
