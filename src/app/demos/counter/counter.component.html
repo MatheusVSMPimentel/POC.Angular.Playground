@@ -1,0 +1,16 @@
+<div class="container main-container">
+<h1>Counter</h1>
+<div class="counter">
+    <div
+    (keydown)="onKeyUp($event)"
+    (blur)="onBlur($event)"
+    (focus)="onFocus($event)"
+    tabindex="0">
+        <p>{{ counterValue }}</p>
+        <div tabindex="-1">
+            <button type="button" tabindex="-1" (click)="increase()" [disabled]="counterValue === maxCounter">+</button>
+            <button type="button"  tabindex="-1" (click)="decrease()" [disabled]="counterValue === minCounter">-</button>
+        </div>
+    </div>
+</div>
+</div>
