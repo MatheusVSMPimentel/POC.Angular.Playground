@@ -20,7 +20,7 @@ import { fromEvent, merge, Observable } from 'rxjs';
 })
 
 export class RegistrationComponent implements OnInit, AfterViewInit {
-
+  title = 'Demo Register';
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements!: ElementRef<any>[];
   dirtyFormNotSended: boolean = false;
   registerForm: FormGroup = new FormGroup({});

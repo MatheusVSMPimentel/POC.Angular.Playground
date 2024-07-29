@@ -9,7 +9,7 @@ describe('Angular Playground App', ()=>{
     });
 
      it('Should diplay welcome message',async ()=>{
-        page.navigato();
+        page.navigateToHome();
         expect(await page.getTitleText()).toEqual('Advanced Angular development');
     });
 
